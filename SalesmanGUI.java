@@ -72,7 +72,7 @@ public class SalesmanGUI {
 		frame.setTitle("Traveling Salesman"); 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		frame.pack(); 
-		frame.setSize(600,600); 
+		frame.setSize(600,650); 
 		frame.setVisible(true); 
 
 	}
@@ -94,7 +94,10 @@ public class SalesmanGUI {
 				for (Vertex v : c) {
 					Ellipse2D circle2D = new Ellipse2D.Double(v.x*500, (500-v.y*500), 6, 6);
 					g2.draw(circle2D);
-					g2.drawString((String) v.name, (int) (v.x*500-3), (int) (500-v.y*500)); 
+					g2.drawString(
+						(String) v.name + " (" + String.format("%.3f", v.x) 
+							+ ", " + String.format("%.3f", v.y) + ")", 
+						(int) (v.x*500-3), (int) (500-v.y*500)); 
 				}
 			}
 			// draw edges 
@@ -134,7 +137,7 @@ public class SalesmanGUI {
 			vertices.revalidate();
 			vertices.repaint();
 			frame.pack();
-			frame.setSize(600,600);
+			frame.setSize(600,650);
 		}
 
 	}
@@ -158,9 +161,9 @@ public class SalesmanGUI {
 			vertices = newGraph; 
 			vertices.revalidate();
 			vertices.repaint();
-			message.setText("distance: " + String.format("%.6f", salesman.totalDistance)); 
+			message.setText("distance: " + String.format("%.4f", salesman.totalDistance)); 
 			frame.pack();
-			frame.setSize(600,600);
+			frame.setSize(600,650);
 		}
 
 	}
@@ -175,10 +178,10 @@ public class SalesmanGUI {
 			Vertices newGraph = new Vertices(salesman.route); 
 			vertices = newGraph; 
 			vertices.revalidate();
-			message.setText("distance: " + String.format("%.6f", salesman.totalDistance)); 
+			message.setText("distance: " + String.format("%.4f", salesman.totalDistance)); 
 			vertices.repaint();
 			frame.pack();
-			frame.setSize(600,600);
+			frame.setSize(600,650);
 		}
 
 	}

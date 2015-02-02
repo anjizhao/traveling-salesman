@@ -16,11 +16,8 @@ public class TravelingSalesman {
 	public static Integer[] route; 
 	public static double totalDistance; 
 
-	public TravelingSalesman(int n) throws TooLargeNException {
+	public TravelingSalesman(int n) {
 
-		if (n > 9 || n < 0) {
-			throw new TooLargeNException("invalid n: " + n); 
-		}
 		cities = new HashMap<Integer, Vertex>(); 
 		this.n = n; 
 		generateVertices(); 
@@ -29,10 +26,8 @@ public class TravelingSalesman {
 		route = null; 
 	}
 
-	public void newSalesman(int n) throws TooLargeNException {
-		if (n > 9 || n < 0) {
-			throw new TooLargeNException("invalid n: " + n); 
-		}
+	public void newSalesman(int n) {
+
 		cities.clear(); 
 		this.n = n; 
 		generateVertices(); 
@@ -149,11 +144,10 @@ public class TravelingSalesman {
 	}
 
 	private void generateVertices() {
-		String[] letters = new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"}; 
 		for (int i = 0; i < n; i++) {
 			double x = Math.random(); 
 			double y = Math.random(); 
-			Vertex v = new Vertex(letters[i]); 
+			Vertex v = new Vertex("v" + i); 
 			v.x = x; v.y = y; v.key = i; 
 			cities.put(i, v); 
 		}

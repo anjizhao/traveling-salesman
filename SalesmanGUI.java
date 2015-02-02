@@ -36,13 +36,10 @@ public class SalesmanGUI {
 	private static void makeGUI() { 
 
 		frame  = new JFrame(); 
-		try {
-			salesman = new TravelingSalesman(0); 
-		} catch (TooLargeNException e) {
-		}
+		salesman = new TravelingSalesman(0); 
 		vertices = new Vertices(salesman.route); 
 
-		inputLabel = new JLabel("choose N (1-9): "); 
+		inputLabel = new JLabel("choose N: "); 
 		inputBox = new JTextField(4); 
 		start = new JButton("go"); 
 		start.addActionListener(new StartListener());
@@ -122,16 +119,17 @@ public class SalesmanGUI {
 		}
 
 		public void actionPerformed(ActionEvent event) {
-			int n = Integer.parseInt(inputBox.getText()); 
-			numCities = n;
+			int n = 0;
 			try {
-				salesman.newSalesman(n);
-				Vertices newGraph = new Vertices(salesman.route); 
-				vertices = newGraph; 
-			} catch (TooLargeNException e) {
-				message.setText(e.getMessage()); 
+				n = Integer.parseInt(inputBox.getText()); 
+			} catch (NumberFormatException e) {
+				message.setText("invalid input"); 
 				return;
 			}
+			numCities = n;
+			salesman.newSalesman(n);
+			Vertices newGraph = new Vertices(salesman.route); 
+			vertices = newGraph; 
 			message.setText("click to display the optimal route or " 
 				+ "nearest neighbor tour");
 			vertices.revalidate();
